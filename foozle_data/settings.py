@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'corsheaders',
-    'foozle_data.data'
+    'foozle_data.apps.data'
 ]
 
 MIDDLEWARE = [
