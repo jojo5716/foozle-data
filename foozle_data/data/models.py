@@ -12,7 +12,7 @@ class ProjectTypes(models.Model):
     help_text="Ejem: Vacacional, Urbano, Individual, Corporativa, etc...")
 
     def __unicode__(self):
-        return u"{}".format(self.name)
+        return u"[OBJ]: {}".format(self.name)
 
 
 class Project(models.Model):
@@ -21,23 +21,24 @@ class Project(models.Model):
     name = models.CharField("Nombre del proyecto", max_length=200)
     tags = models.ManyToManyField(ProjectTypes)
     created_at = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
 
     def __unicode__(self):
-        return u"{}".format(self.name)
+        return u"[OBJ]: {}".format(self.name)
 
 class Account(models.Model):
     name = models.CharField("Nombre de la cuenta", max_length=200)
     projects = models.ManyToManyField(Project)
 
     def __unicode__(self):
-        return u"{}".format(self.name)
+        return u"[OBJ]: {}".format(self.name)
 
 
 class UserProfile(models.Model):
     data = HStoreField(default=dict, blank=True)
 
     def __unicode__(self):
-        return u"{}".format(self.data.get("name", "anonymous"))
+        return u"[OBJ]: {}".format(self.data.get("name", "anonymous"))
     
 
 class Data(models.Model):
