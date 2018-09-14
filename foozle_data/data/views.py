@@ -6,5 +6,5 @@ from django.shortcuts import render
 
 def track_data(request):
     return JsonResponse({
-        success: True
+        "success": True
     })
