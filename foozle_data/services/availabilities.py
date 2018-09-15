@@ -9,14 +9,15 @@ def create(availability_data):
         availability_data: {dict} Availability json
 
     Return:
-        New instance of Availability model
+        {Availability|None}: New instance of Availability model or None
     """
-    return Availability.objects.create(**{
-        "hotel": {
-            "code": availability_data["metaData"]["hotelCode"].strip(),
-            "name": availability_data["metaData"]["hotelName"].strip(),
-            "currency": availability_data["metaData"]["hotelCurrencyCode"]
-        },
-        "data": availability_data["availability"],
-    })
+    if availability_data["availability"]:
+        return Availability.objects.create(**{
+            "hotel": {
+                "code": availability_data["metaData"]["hotelCode"].strip(),
+                "name": availability_data["metaData"]["hotelName"].strip(),
+                "currency": availability_data["metaData"]["hotelCurrencyCode"]
+            },
+            "data": availability_data["availability"],
+        })
 

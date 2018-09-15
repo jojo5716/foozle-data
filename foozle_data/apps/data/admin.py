@@ -12,7 +12,8 @@ from .models import (
     Page,
     Navigation,
     Booking,
-    Availability
+    Availability,
+    Action
 )
 ### ============== ProjectTypes ============== ###
 class ProjectTypesAdmin(admin.ModelAdmin):
@@ -62,10 +63,27 @@ admin.site.register(Data, DataAdmin)
 ### ============== [END] Data ============== ###
 
 
+
+
+
+
+### ============== Action ============== ###
+class ActionInLine(admin.StackedInline):
+    model = Action
+    extra = 0
+    
+class ActionAdmin(admin.ModelAdmin):
+    list_display = ('action', 'created_at',)
+
+admin.site.register(Action, ActionAdmin)
+### ============== [Action] Page ============== ###
+
+
+
 ### ============== Page ============== ###
 class PageAdmin(admin.ModelAdmin):
-    list_display = ('created_at', 'data', 'actions')
-
+    list_display = ('created_at', 'data', )
+    inlines = [ActionInLine]
 admin.site.register(Page, PageAdmin)
 ### ============== [END] Page ============== ###
 
@@ -92,4 +110,3 @@ class AvailabilityAdmin(admin.ModelAdmin):
 
 admin.site.register(Availability, AvailabilityAdmin)
 ### ============== [Availability] Page ============== ###
-

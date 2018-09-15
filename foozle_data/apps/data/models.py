@@ -53,13 +53,21 @@ class Page(models.Model):
     unique_id = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
     data = HStoreField(default=dict, blank=True)
-    actions = ArrayField(HStoreField(default=dict, blank=True), default=list)
     meta_data = HStoreField(default=dict, blank=True)
     enviroment = HStoreField(default=dict, blank=True)
 
     def __unicode__(self):
         return u"{}".format(self.data.get("url", '---'))
     
+class Action(models.Model):
+    page = models.ForeignKey(Page)
+    action = HStoreField(default=dict, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        action_names = self.action.keys()
+
+        return u"{}".format(action_names[0] if action_names else "Unknown action")
 
 class Booking(models.Model):
     code = models.CharField(max_length=200)
@@ -82,3 +90,5 @@ class Navigation(models.Model):
     bookings = models.ManyToManyField(Booking, blank=True, null=True)
     availabilities = models.ManyToManyField(Availability, blank=True, null=True)
     user_info = HStoreField(default=dict, blank=True)
+
+
