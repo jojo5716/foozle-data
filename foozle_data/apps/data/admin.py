@@ -8,7 +8,11 @@ from .models import (
     Account,
     Project,
     UserProfile,
-    Data
+    Data,
+    Page,
+    Navigation,
+    Booking,
+    Availability
 )
 ### ============== ProjectTypes ============== ###
 class ProjectTypesAdmin(admin.ModelAdmin):
@@ -20,6 +24,7 @@ admin.site.register(ProjectTypes, ProjectTypesAdmin)
 ### ============== [END] Account ============== ###
 class AccountAdmin(admin.ModelAdmin):
     list_display = ('name', 'print_projects_name')
+    filter_horizontal = ('projects', )
 
     def print_projects_name(self, obj):
         project_names = [project.name for project in obj.projects.filter(active=True)]
@@ -32,6 +37,7 @@ admin.site.register(Account, AccountAdmin)
 ### ============== Project ============== ###
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('unique_id', 'name', 'print_tag_names', 'created_at', 'active')
+    filter_horizontal = ('tags', )
 
     def print_tag_names(self, obj):
         tag_names = [tag.name for tag in obj.tags.all()]
@@ -43,7 +49,7 @@ admin.site.register(Project, ProjectAdmin)
 
 ### ============== UserProfile ============== ###
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('data', )
+    list_display = ('unique_id', 'data')
 
 admin.site.register(UserProfile, UserProfileAdmin)
 ### ============== [END] UserProfile ============== ###
@@ -54,4 +60,36 @@ class DataAdmin(admin.ModelAdmin):
 
 admin.site.register(Data, DataAdmin)
 ### ============== [END] Data ============== ###
+
+
+### ============== Page ============== ###
+class PageAdmin(admin.ModelAdmin):
+    list_display = ('created_at', 'data', 'actions')
+
+admin.site.register(Page, PageAdmin)
+### ============== [END] Page ============== ###
+
+
+### ============== Booking ============== ###
+class BookingAdmin(admin.ModelAdmin):
+    list_display = ('code', 'data')
+
+admin.site.register(Booking, BookingAdmin)
+### ============== [Booking] Page ============== ###
+
+
+### ============== Navigation ============== ###
+class NavigationAdmin(admin.ModelAdmin):
+    list_display = ('project', 'session_id', 'created_at', 'last_view')
+    filter_horizontal = ('pages', 'bookings', 'availabilities')
+
+admin.site.register(Navigation, NavigationAdmin)
+### ============== [Navigation] Page ============== ###
+
+### ============== Availability ============== ###
+class AvailabilityAdmin(admin.ModelAdmin):
+    list_display = ('hotel', 'data',)
+
+admin.site.register(Availability, AvailabilityAdmin)
+### ============== [Availability] Page ============== ###
 
