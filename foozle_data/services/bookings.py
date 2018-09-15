@@ -1,7 +1,7 @@
 from ..apps.data.models import Booking
 
 
-def get_and_update(booking_data):
+def create_or_update(booking_data):
     """ 
     Return a booking object by a code
 
@@ -14,11 +14,14 @@ def get_and_update(booking_data):
     Return:
         Instance of Booking model
     """
-    try:
-        booking = Booking.objects.get(code=booking_data["code"])
-    except (Booking.DoesNotExist, KeyError):
-        booking = None
-    else:
+    booking = None
+
+    if booking_data:        
+        try:
+            booking = Booking.objects.get(code=booking_data["bookingCode"])
+        except (Booking.DoesNotExist, KeyError):
+            booking = Booking(code=booking_data["bookingCode"])
+        
         booking.data = booking_data
         booking.save()
 

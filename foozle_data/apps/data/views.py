@@ -67,7 +67,7 @@ def track_data(request):
             # is beacause user reload the page.
             page = page_service.create_page(body_json["data"])
      
-            booking = bookings_service.get_and_update(body_json["data"]["booking"])
+            booking = bookings_service.create_or_update(body_json["data"]["booking"])
 
             availability = availability_service.create(body_json["data"])
             
@@ -99,8 +99,9 @@ def track_action(request):
     body_json = json.loads(request.body)
     pprint(body_json)
     page_token = body_json["data"]["pageToken"]
+    action_data = body_json["data"].get("actions")
 
-    if isinstance(body_json, dict) and page_token:
+    if isinstance(body_json, dict) and page_token and action_data:
         page = page_service.get_by_id(page_token)
 
         if page:
