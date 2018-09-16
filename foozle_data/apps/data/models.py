@@ -78,11 +78,12 @@ class Booking(models.Model):
 class Availability(models.Model):
     hotel = HStoreField(default=dict, blank=True)
     data = HStoreField(default=dict, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class Navigation(models.Model):
     user = models.OneToOneField(UserProfile)
-    project = models.OneToOneField(Project)
+    project = models.ForeignKey(Project)
     session_id = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
     last_view = models.DateTimeField(auto_now=True)

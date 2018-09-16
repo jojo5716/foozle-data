@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import json
+import datetime
 
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -89,6 +90,8 @@ def track_data(request):
             
             if availability:
                 navigation.availabilities.add(availability)
+
+            navigation.last_view = datetime.datetime.now()
 
         return JsonResponse({
             "success": True

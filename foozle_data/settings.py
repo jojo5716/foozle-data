@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'corsheaders',
+    'graphene_django',
+
     'foozle_data.apps.data'
 ]
 
@@ -144,3 +146,11 @@ CORS_ALLOW_HEADERS = (
     'x-csrftoken',
     'x-requested-with',
 )
+
+# Graphql
+GRAPHENE = {
+    'SCHEMA': 'foozle_data.graphql.schema.schema',
+    'MIDDLEWARE': [
+        'graphene_django.debug.DjangoDebugMiddleware',
+    ]
+}

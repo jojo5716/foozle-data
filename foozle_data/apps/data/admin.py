@@ -81,9 +81,14 @@ admin.site.register(Action, ActionAdmin)
 
 
 ### ============== Page ============== ###
+class PageInLine(admin.StackedInline):
+    model = Page
+    extra = 0
+
 class PageAdmin(admin.ModelAdmin):
     list_display = ('created_at', 'data', )
     inlines = [ActionInLine]
+
 admin.site.register(Page, PageAdmin)
 ### ============== [END] Page ============== ###
 
@@ -98,8 +103,9 @@ admin.site.register(Booking, BookingAdmin)
 
 ### ============== Navigation ============== ###
 class NavigationAdmin(admin.ModelAdmin):
-    list_display = ('project', 'session_id', 'created_at', 'last_view')
+    list_display = ('project', 'user', 'session_id', 'created_at', 'last_view')
     filter_horizontal = ('pages', 'bookings', 'availabilities')
+    # inlines = [PageInLine]
 
 admin.site.register(Navigation, NavigationAdmin)
 ### ============== [Navigation] Page ============== ###
