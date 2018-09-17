@@ -72,8 +72,6 @@ def track_data(request):
 
             availability = availability_service.create(body_json["data"])
             
-            # TODO: - Falta registrar las busquedas de disponibilidad
-            #       - Relacionar los bookings y availabilities al navigation
             # Try to get the navigation or create one if does not exist (first request for the user)
             navigation_query = {
                 "user": user,
