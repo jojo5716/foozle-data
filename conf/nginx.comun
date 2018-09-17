@@ -1,0 +1,13 @@
+location /static/admin/ {
+    alias /home/jrodriguez/virtualenvs/foozle/lib/python2.7/site-packages/django/contrib/admin/static/admin/;
+    access_log off;
+    expires 30d;
+    break;
+}
+
+location /cache/ {
+    alias /home/jrodriguez/projects/foozle-data/cache/;
+    access_log off;
+    expires 30d;
+    break;
+}
