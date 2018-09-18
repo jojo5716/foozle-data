@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'graphene_django',
 
-    'foozle_data.apps.data'
+    'foozle_data.apps.data',
+    'foozle_data.apps.errors',
 ]
 
 MIDDLEWARE = [

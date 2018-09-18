@@ -17,7 +17,6 @@ from ...services import (
 )
 
 from pprint import pprint
-from pprint import pprint
 
 
 def track_data(request):

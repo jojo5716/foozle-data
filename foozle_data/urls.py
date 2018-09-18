@@ -22,6 +22,7 @@ from graphene_django.views import GraphQLView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^foozle/', include('foozle_data.apps.data.urls')),
+    url(r'^foozle/error/', include('foozle_data.apps.errors.urls')),
 ]
 
 
