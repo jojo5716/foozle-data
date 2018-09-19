@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'corsheaders',
     'graphene_django',
+    'redis',
     'raven.contrib.django.raven_compat',
     'foozle_data.apps.data',
     'foozle_data.apps.errors',
