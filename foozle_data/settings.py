@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -40,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'corsheaders',
     'graphene_django',
-
+    'raven.contrib.django.raven_compat',
     'foozle_data.apps.data',
     'foozle_data.apps.errors',
 ]
@@ -154,4 +153,10 @@ GRAPHENE = {
     'MIDDLEWARE': [
         'graphene_django.debug.DjangoDebugMiddleware',
     ]
+}
+
+
+
+RAVEN_CONFIG = {
+    'dsn': 'https://3bdf429c2edb48cb989dad05bb203370:aaace05f6b6041f6acb645ec3bf8303d@sentry.io/1284102',
 }
