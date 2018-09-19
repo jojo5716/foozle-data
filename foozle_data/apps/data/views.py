@@ -10,7 +10,7 @@ from ...services import (
     action as action_service
 )
 
-from .celery import register_data
+from .workers import register_data
 
 from pprint import pprint
 
