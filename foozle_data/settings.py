@@ -41,8 +41,11 @@ INSTALLED_APPS = [
     'graphene_django',
     'redis',
     'raven.contrib.django.raven_compat',
+    'django_celery_results',
+
     'foozle_data.apps.data',
     'foozle_data.apps.errors',
+    
 ]
 
 MIDDLEWARE = [

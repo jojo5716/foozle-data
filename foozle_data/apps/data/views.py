@@ -49,11 +49,7 @@ def track_data(request):
         project = project_service.get_project_by_uuid(body_json["project"])
 
         if project:
-            # Getting user visitor profile
-            pprint(body_json)
             register_data.delay(body_json)
-       
-
 
 def track_action(request):
     body_json = json.loads(request.body)
