@@ -22,12 +22,13 @@ from pprint import pprint
 
 @task(name="saving_data")
 @transaction.atomic
-def register_data(project, body_json):
+def register_data(body_json):
     def register_array_field(instance, field_name, value):
         if value:
             values = getattr(instance, field_name, [])
             values.append(value)
 
+    project = project_service.get_project_by_uuid(body_json["project"])
 
     if project:
         # Getting user visitor profile
