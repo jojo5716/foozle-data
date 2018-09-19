@@ -10,7 +10,7 @@ from ...services import (
     action as action_service
 )
 
-from .workers import register_data
+from .workers import register_data, register_action
 
 from pprint import pprint
 
@@ -54,20 +54,12 @@ def track_data(request):
     return JsonResponse({
         "success": True
     })
+
+
 def track_action(request):
     body_json = json.loads(request.body)
-    pprint(body_json)
-    page_token = body_json["data"]["pageToken"]
-    action_data = body_json["data"].get("actions")
 
-    if isinstance(body_json, dict) and page_token and action_data:
-        page = page_service.get_by_id(page_token)
-
-        if page:
-            action_data = body_json["data"]["actions"]
-
-            action = action_service.create(action_data, page) if action_data else None
-
+    register_action.delay(body_json)
 
     return JsonResponse({
         "success": True

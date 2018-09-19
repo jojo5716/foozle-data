@@ -45,10 +45,10 @@ def create_console_log(console_data):
 
 def create_network_log(console_data):
     return Network.objects.create(**{
-        "status": console_data["statusCode"],
-        "method": console_data["method"],
-        "url": console_data["url"],
-        "startedOn": date_helper.convert_iso_string_date(console_data["startedOn"]),
-        "completedOn": date_helper.convert_iso_string_date(console_data["completedOn"])
+        "status": console_data.get("statusCode"),
+        "method": console_data.get("method"),
+        "url": console_data.get("url"),
+        "startedOn": date_helper.convert_iso_string_date(console_data.get("startedOn")),
+        "completedOn": date_helper.convert_iso_string_date(console_data.get("completedOn"))
        
     })

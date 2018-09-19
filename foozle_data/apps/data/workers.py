@@ -19,7 +19,6 @@ from ...services import (
     action as action_service
 )
 
-from pprint import pprint
 
 @task(name="saving_data")
 @transaction.atomic
@@ -33,7 +32,6 @@ def register_data(body_json):
 
     if project:
         # Getting user visitor profile
-        pprint(body_json)
         user_session = body_json["data"]["session"]
         user, user_created = user_service.get_or_create(user_session)
 
@@ -65,3 +63,18 @@ def register_data(body_json):
         navigation.last_view = datetime.datetime.now()
 
         navigation.save()
+
+@task(name="saving_action")
+@transaction.atomic
+def register_action(body_json):
+    page_token = body_json["data"]["pageToken"]
+    action_data = body_json["data"].get("actions")
+
+    if isinstance(body_json, dict) and page_token and action_data:
+        page = page_service.get_by_id(page_token)
+
+        if page:
+            action_data = body_json["data"]["actions"]
+
+            if action_data:
+                action_service.create(action_data, page)
