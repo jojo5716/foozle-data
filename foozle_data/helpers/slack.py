@@ -6,7 +6,6 @@ def notify_error(error_data):
     sc = SlackClient(slack_token)
 
     file_error = error_data.file_error
-    message
     message = """ 
     Hola! @channel
 
