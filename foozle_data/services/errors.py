@@ -27,7 +27,7 @@ def update_or_create(error_data):
 def create_error_detail(detail_data):
     return ErrorDetail.objects.create(**{
         "type_name": detail_data["entry"],
-        "line": detail_data["line"],
+        "line": detail_data.get("line"),
         # consoles = models.ManyToManyField(ConsoleError)
         # networks = models.ManyToManyField(Network)
         "url": detail_data["url"],
