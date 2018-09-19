@@ -47,7 +47,7 @@ def track_data(request):
     if request.method == "POST":
         body_json = json.loads(request.body)
         project = project_service.get_project_by_uuid(body_json["project"])
-
+       
         if project:
             register_data.delay(body_json)
 
