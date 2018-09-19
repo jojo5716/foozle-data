@@ -13,7 +13,7 @@ def get_project_by_uuid(project_uuid):
         Instance of Project model
     """
     try:
-        project = Project.objects.get(unique_id=project_uuid)
+        project = Project.objects.get(unique_id=project_uuid, active=True)
     except (ValidationError, Project.DoesNotExist):
         project = None
     
