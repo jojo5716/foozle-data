@@ -16,7 +16,7 @@ def register_error(body_json):
     if body_json:
         error = error_service.update_or_create({
             "file_error": body_json.get("file", ''),
-            "message": body_json("message", '')
+            "message": body_json.get("message", '')
         })
 
         error_detail = error_service.create_error_detail(body_json)
