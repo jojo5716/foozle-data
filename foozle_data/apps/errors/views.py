@@ -12,12 +12,11 @@ from ...services import errors as error_service
 def track_error(request):
     body_json = json.loads(request.body)
 
-    print "=" * 90
     pprint(body_json)
     
     if body_json:
         error = error_service.update_or_create({
-            "file_error": body_json["file"],
+            "file_error": body_json.get("file", 'no file'),
             "message": body_json["message"]
         })
 
@@ -34,7 +33,7 @@ def track_error(request):
             network_obj = error_service.create_network_log(network)
 
             error_detail.networks.add(network_obj)
-            
+
     return JsonResponse({
         "success": True
     })
