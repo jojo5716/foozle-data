@@ -90,6 +90,8 @@ def track_data(request):
 
             navigation.last_view = datetime.datetime.now()
 
+            navigation.save()
+
         return JsonResponse({
             "success": True
         })
