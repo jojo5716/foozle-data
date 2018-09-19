@@ -1,11 +1,10 @@
 from slackclient import SlackClient
 
 
-def notify_error(error_data):
-    slack_token = "xoxb-212395692886-lpSzq7XxN0bFxhKrpsg5elFD"
+def notify_error(error):
+    slack_token = "xoxb-212395692886-PuBVNOnambhOlBcjiOkuwx4t"
     sc = SlackClient(slack_token)
 
-    file_error = error_data.file_error
     message = """ 
     Hola! @channel
 
@@ -18,7 +17,7 @@ def notify_error(error_data):
 
     {}
     ```
-    """.format(error_data.file_error, error_data.message)
+    """.format(error.file_error, error.message)
 
     sc.api_call(
         "chat.postMessage",
