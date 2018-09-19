@@ -12,6 +12,7 @@ from celery.decorators import task
 from ...services import (
     user as user_service,
     navigation as navigation_service,
+    project as project_service,
     page as page_service,
     bookings as bookings_service,
     availabilities as availability_service,
