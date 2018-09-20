@@ -88,8 +88,8 @@ class Navigation(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     last_view = models.DateTimeField(auto_now=True)
     pages = models.ManyToManyField(Page, blank=True)
-    bookings = models.ManyToManyField(Booking, blank=True, null=True)
-    availabilities = models.ManyToManyField(Availability, blank=True, null=True)
+    bookings = models.ManyToManyField(Booking, blank=True)
+    availabilities = models.ManyToManyField(Availability, blank=True)
     user_info = HStoreField(default=dict, blank=True)
 
 

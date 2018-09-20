@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'raven.contrib.django.raven_compat',
     'django_celery_results',
 
+    'foozle_data.apps.configuration',
     'foozle_data.apps.data',
     'foozle_data.apps.errors',
     
