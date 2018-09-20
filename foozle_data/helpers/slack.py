@@ -13,9 +13,7 @@ def notify_error(error):
         Hola! @channel
 
         A un probre desgraciado le ha sucedido un error de js en mobilis.
-        Podeis mirarlo?
 
-        Gracias:
         ``` 
         El fichero donde se produjo el error es {}
 
